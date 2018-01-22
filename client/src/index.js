@@ -2,21 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { compose } from 'recompose';
 
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
+import { withMuiThemeProvider } from './providers';
+
 import { App } from './components';
 
+const withProviders = compose(
+    withMuiThemeProvider
+);
+
 ReactDOM.render(
-    <MuiThemeProvider>
+    withProviders(
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={App} />
             </Switch>
         </BrowserRouter>
-    </MuiThemeProvider>,
+    ),
     document.getElementById('root')
 );
+
 registerServiceWorker();
