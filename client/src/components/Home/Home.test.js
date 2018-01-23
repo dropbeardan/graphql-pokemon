@@ -1,24 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { compose } from 'recompose';
-
-import { withMuiThemeProvider } from '../../providers';
 
 import Home from './Home';
-import { RoundButton } from '../Buttons';
-
-const withProviders = compose(
-  withMuiThemeProvider
-);
 
 const renderComponent = (component, target) => {
   ReactDOM.render(
-    withProviders(
-      <BrowserRouter>
-        <Route component={component} />
-      </BrowserRouter>
-    ),
+    <BrowserRouter>
+      <Route component={() => { return component; }} />
+    </BrowserRouter>,
     target
   );
 };
