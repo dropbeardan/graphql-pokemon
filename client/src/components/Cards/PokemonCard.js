@@ -3,6 +3,8 @@ import injectSheet from 'react-jss';
 
 import styles from './PokemonCard.styles.js';
 
+import { ElementBadge } from '../Badges';
+
 import Pokemon404 from '../../assets/images/pokemon404.jpg';
 
 const PokemonCard = class extends React.Component {
@@ -18,6 +20,11 @@ const PokemonCard = class extends React.Component {
                     alt='Not Yet Scanned'
                 />
                 <div className={this.props.classes.PokemonCard__Type}>
+                    {this.props.types && this.props.types.map((type) => {
+                        return (
+                            <ElementBadge key={type} type={type} position='center' />
+                        );
+                    })}
                 </div>
                 <div className={this.props.classes.PokemonCard__Overlay}>
                     <div className={this.props.classes.PokemonCard__Overlay__Description}>
