@@ -25,6 +25,11 @@ const styles = {
             maxHeight: 'calc(1em + 20px)',
             padding: '10px',
             opacity: '1'
+        },
+        '& > img': {
+            maxHeight: '100%',
+            maxWidth: '100%',
+            objectFit: 'contain'
         }
     },
     ElementBadge__Hint: {
@@ -40,7 +45,7 @@ const styles = {
         border: 'none',
         borderRadius: '5px',
         padding: '0',
-        background: 'rgba(255, 255, 255, 0.5)',
+        background: 'rgba(255, 255, 255, 0.9)',
         opacity: '0',
         transition: 'max-height 0.2s, padding 0.2s, opacity 0.2s',
         '&.left': {
