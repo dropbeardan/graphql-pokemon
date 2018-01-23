@@ -4,22 +4,29 @@ import FlatButton from 'material-ui/FlatButton';
 
 import styles from './RoundButton.styles';
 
-const RoundButton = (props) => {
-    const buttonStyle = props.style && props.style.RoundButton ?
-        { ...styles.RoundButton, ...props.style.RoundButton } :
-        { ...styles.RoundButton };
+const RoundButton = class extends React.Component {
 
-    const labelStyle = props.style && props.style.RoundButton__Label ?
-        { ...styles.RoundButton__Label, ...props.style.RoundButton__Label } :
-        { ...styles.RoundButton__Label };
+    constructor(props) {
+        super(props);
 
-    return (
-        <FlatButton
-            {...props}
-            style={buttonStyle}
-            labelStyle={labelStyle}
-        />
-    );
+        this.buttonStyle = props.style && props.style.RoundButton ?
+            { ...styles.RoundButton, ...props.style.RoundButton } :
+            { ...styles.RoundButton };
+
+        this.labelStyle = props.style && props.style.RoundButton__Label ?
+            { ...styles.RoundButton__Label, ...props.style.RoundButton__Label } :
+            { ...styles.RoundButton__Label };
+    };
+
+    render() {
+        return (
+            <FlatButton
+                {...this.props}
+                style={this.buttonStyle}
+                labelStyle={this.labelStyle}
+            />
+        );
+    };
 };
 
 export default RoundButton;
