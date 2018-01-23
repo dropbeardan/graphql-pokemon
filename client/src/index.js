@@ -7,11 +7,12 @@ import { compose } from 'recompose';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-import { withMuiThemeProvider } from './providers';
+import { withJSSProvider, withMuiThemeProvider } from './providers';
 
 import { Home } from './components';
 
 const withProviders = compose(
+    withJSSProvider,
     withMuiThemeProvider
 );
 
