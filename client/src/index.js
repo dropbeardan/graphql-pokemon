@@ -9,7 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import { withMuiThemeProvider } from './providers';
 
-import { App } from './components';
+import { Home } from './components';
 
 const withProviders = compose(
     withMuiThemeProvider
@@ -19,7 +19,7 @@ ReactDOM.render(
     withProviders(
         <BrowserRouter>
             <Switch>
-                <Route exact path='/' component={App} />
+                <Route exact path='/' component={Home} />
             </Switch>
         </BrowserRouter>
     ),
