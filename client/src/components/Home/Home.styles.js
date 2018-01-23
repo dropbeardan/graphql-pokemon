@@ -1,4 +1,4 @@
-import background from '../../assets/images/hero-background.jpg';
+import background from '../../assets/images/home-background.jpg';
 
 const styles = {
 	Home: {
