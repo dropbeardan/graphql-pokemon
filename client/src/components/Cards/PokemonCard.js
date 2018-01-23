@@ -8,7 +8,10 @@ import Pokemon404 from '../../assets/images/pokemon404.jpg';
 const PokemonCard = class extends React.Component {
     render() {
         return (
-            <div className={this.props.classes.PokemonCard}>
+            <div
+                className={this.props.classes.PokemonCard}
+                onClick={this.props.onClick}
+            >
                 <img
                     className={this.props.classes.PokemonCard__Image}
                     src={this.props.src ? this.props.src : Pokemon404}
