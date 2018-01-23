@@ -11,6 +11,16 @@ const withProviders = compose(
 
 import LinkButton from './LinkButton';
 
+const renderComponent = (component, target) => {
+    ReactDOM.render(
+        withProviders(
+            <BrowserRouter>
+                <Route component={component} />
+            </BrowserRouter>
+        ), target
+    );
+};
+
 test('renders without crashing', () => {
     const div = document.createElement('div');
 
@@ -18,13 +28,7 @@ test('renders without crashing', () => {
         return <LinkButton url='/' label='test' />;
     };
 
-    ReactDOM.render(
-        withProviders(
-            <BrowserRouter>
-                <Route component={LinkButtonContainer} />
-            </BrowserRouter>
-        ), div
-    );
+    renderComponent(LinkButtonContainer, div);
 
     ReactDOM.unmountComponentAtNode(div);
 });
