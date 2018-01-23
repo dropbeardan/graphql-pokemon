@@ -13,7 +13,7 @@ const withProviders = compose(
 const renderComponent = (component, target) => {
     ReactDOM.render(
         withProviders(
-            Component
+            component
         ),
         target
     );
