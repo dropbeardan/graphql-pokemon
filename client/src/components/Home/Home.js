@@ -18,7 +18,7 @@ const Home = (props) => {
 						<main className={props.classes.Home__Hero__Main}>For lovers of Pokémon</main>
 						<Link to='/pokedex'>
 							<RoundButton
-								label="Visit the Laboratory"
+								label="Open the Pokédex"
 								backgroundColor='#FFFFFF'
 								hoverColor='#FCE4EC'
 								rippleColor='#3F51B5'
