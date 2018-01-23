@@ -1,11 +1,11 @@
 const styles = {
-    LinkButton: {
+    RoundButton: {
         height: 'auto',
         padding: '5px',
         border: '1px solid rgba(0, 0, 0, 0.1)',
         borderRadius: '10px'
     },
-    LinkButton__Label: {
+    RoundButton__Label: {
         fontSize: '1.25em'
     }
 };
