@@ -27,7 +27,7 @@ const PokemonCard = class extends React.Component {
                                 key={type}
                                 className={this.props.classes.PokemonCard__Type__Badge}
                                 type={type}
-                                position='center'
+                                alignment={this.props.alignment ? this.props.alignment : 'center'}
                             />
                         );
                     })}
