@@ -25,7 +25,7 @@ const SearchField = class extends React.Component {
             });
 
             if (fn) {
-                fn('');
+                fn(event.target.value);
             }
         };
     };
