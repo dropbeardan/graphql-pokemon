@@ -37,4 +37,6 @@ const PokemonCard = class extends React.Component {
     };
 };
 
-export default injectSheet(styles)(PokemonCard);
+const Output = injectSheet(styles)(PokemonCard);
+
+export { PokemonCard as Base, Output };

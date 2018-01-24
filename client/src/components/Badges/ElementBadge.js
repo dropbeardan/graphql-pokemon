@@ -71,4 +71,6 @@ const ElementBadge = class extends React.Component {
     };
 };
 
-export default injectSheet(styles)(ElementBadge);
+const Output = injectSheet(styles)(ElementBadge);
+
+export { ElementBadge as Base, Output };

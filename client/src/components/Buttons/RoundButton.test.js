@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { compose } from 'recompose';
 
 import { withMuiThemeProvider } from '../../providers';
 
-import RoundButton from './RoundButton';
+import { Output as RoundButton } from './RoundButton';
 
 const withProviders = compose(
     withMuiThemeProvider

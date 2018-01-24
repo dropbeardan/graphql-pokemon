@@ -1,4 +1,5 @@
 import React from 'react';
+import injectSheet from 'react-jss';
 
 import FlatButton from 'material-ui/FlatButton';
 
@@ -29,4 +30,6 @@ const RoundButton = class extends React.Component {
     };
 };
 
-export default RoundButton;
+const Output = injectSheet(styles)(RoundButton);
+
+export { RoundButton as Base, Output };

@@ -44,4 +44,6 @@ const Home = class extends React.Component {
 	};
 };
 
-export default injectSheet(styles)(Home);
+const Output = injectSheet(styles)(Home);
+
+export { Home as Base, Output };

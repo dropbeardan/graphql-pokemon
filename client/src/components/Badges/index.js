@@ -1,1 +1,1 @@
-export { default as ElementBadge } from './ElementBadge';
+export { Output as ElementBadge } from './ElementBadge';

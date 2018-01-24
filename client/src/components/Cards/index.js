@@ -1,1 +1,1 @@
-export { default as PokemonCard } from './PokemonCard';
+export { Output as PokemonCard } from './PokemonCard';

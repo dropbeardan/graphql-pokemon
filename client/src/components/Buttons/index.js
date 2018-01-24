@@ -1,1 +1,1 @@
-export { default as RoundButton } from './RoundButton';
+export { Output as RoundButton } from './RoundButton';

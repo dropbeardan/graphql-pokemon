@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Home from './Home';
+import { Output as Home } from './Home';
 
 const renderComponent = (component, target) => {
   ReactDOM.render(

@@ -63,4 +63,6 @@ const SearchField = class extends React.Component {
     };
 };
 
-export default injectSheet(styles)(SearchField);
+const Output = injectSheet(styles)(SearchField);
+
+export { SearchField as Base, Output };
