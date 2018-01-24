@@ -4,9 +4,8 @@ const styles = {
     Pokedex: {
         display: 'flex',
         justifyContent: 'center',
-        height: '100%',
-        minHeight: '100vh',
-        width: '100%',
+        height: '100vh',
+        width: '100vw',
         backgroundImage: `url(${background})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
@@ -15,8 +14,8 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        height: '100%',
-        width: '100%',
+        height: '100vh',
+        width: '100vw',
         overflowY: 'auto',
         '& > *': {
             maxWidth: '1200px'
@@ -25,6 +24,7 @@ const styles = {
     Pokedex__Filter: {
         marginBottom: '10px',
         height: 'auto',
+        minHeight: '75px',
         width: '100%',
         overflow: 'hidden',
         borderRadius: '0 0 10px 10px',
@@ -34,15 +34,23 @@ const styles = {
         }
     },
     Pokedex__Results: {
-        flex: '1',
         display: 'flex',
         justifyContent: 'center',
         flexWrap: 'wrap',
         width: '100%',
-        borderRadius: '10px',
-        background: 'rgba(255, 255, 255, 0.5)',
         '& > *': {
             margin: '20px'
+        }
+    },
+    Pokedex__Details: {
+        zIndex: '2',
+        position: 'absolute',
+        height: '100vh',
+        width: '100vw',
+        overflowY: 'auto',
+        background: 'rgba(0, 0, 0, 0.9)',
+        '&.hidden': {
+            display: 'none'
         }
     }
 };
