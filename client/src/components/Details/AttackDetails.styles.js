@@ -3,6 +3,7 @@ const styles = {
         display: 'flex',
         justifyContent: 'space-between',
         margin: '10px 0',
+        width: '100%',
         '& > *': {
             display: 'flex'
         }

@@ -17,7 +17,17 @@ const styles = {
         }
     },
     PokemonCard__Image: {
-        objectFit: 'cover'
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+        width: '100%',
+        overflow: 'hidden',
+        background: 'white',
+        '& > img': {
+            maxHeight: '100%',
+            maxWidth: '100%'
+        }
     },
     PokemonCard__Type: {
         display: 'flex',
@@ -51,10 +61,12 @@ const styles = {
             fontWeight: 'bold',
             color: 'white'
         },
-        '& > *:last-child': {
-            overflow: 'hidden',
+        '& > *:not(first-child)': {
             fontSize: '1.25em',
             color: 'white',
+        },
+        '& > *:last-child': {
+            overflow: 'hidden',
             maxHeight: '0',
             transition: 'max-height 0.2s'
         }

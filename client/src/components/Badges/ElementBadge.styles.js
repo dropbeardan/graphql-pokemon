@@ -33,6 +33,7 @@ const styles = {
         }
     },
     ElementBadge__Hint: {
+        zIndex: '1',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

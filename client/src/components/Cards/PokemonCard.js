@@ -14,11 +14,12 @@ const PokemonCard = class extends React.Component {
                 className={this.props.classes.PokemonCard}
                 onClick={this.props.onClick}
             >
-                <img
-                    className={this.props.classes.PokemonCard__Image}
-                    src={this.props.src ? this.props.src : Pokemon404}
-                    alt='Not Yet Scanned'
-                />
+                <div className={this.props.classes.PokemonCard__Image}>
+                    <img
+                        src={this.props.image ? this.props.image : Pokemon404}
+                        alt='Not Yet Scanned'
+                    />
+                </div>
                 <div className={this.props.classes.PokemonCard__Type}>
                     {this.props.types && this.props.types.map((type) => {
                         return (
@@ -34,6 +35,7 @@ const PokemonCard = class extends React.Component {
                 <div className={this.props.classes.PokemonCard__Overlay}>
                     <div className={this.props.classes.PokemonCard__Overlay__Description}>
                         <span>{`#${this.props.number ? this.props.number : '???'} ${this.props.name ? this.props.name : 'Unknown'}`}</span>
+                        <span>{this.props.classification ? this.props.classification : 'Strange Pokémon'}</span>
                         <div>Click to View Details</div>
                     </div>
                 </div>

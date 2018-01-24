@@ -1,5 +1,9 @@
 import React from 'react';
 import injectSheet from 'react-jss';
+import { graphql } from 'react-apollo';
+import { compose } from 'recompose';
+
+import { Pokemon } from '../../models';
 
 import styles from './Details.styles.js';
 
@@ -11,7 +15,7 @@ import Pokemon404 from '../../assets/images/pokemon404.jpg';
 
 const Details = class extends React.Component {
     render() {
-        const pokemon = this.props.pokemon ? this.props.pokemon : {};
+        const pokemon = this.props.PokemonGQL.pokemon ? this.props.PokemonGQL.pokemon : {};
 
         return (
             <section className={this.props.classes.Details}>
@@ -33,16 +37,16 @@ const Details = class extends React.Component {
                                 value={pokemon.name ? pokemon.name : 'Unknown'}
                             />
                             <InfoDetails
-                                label='Type'
-                                value={pokemon.type ? pokemon.type : 'Unknown'}
+                                label='Classification'
+                                value={pokemon.classification ? pokemon.classification : 'Unknown'}
                             />
                             <InfoDetails
                                 label='Weight'
-                                value={pokemon.weight ? `${pokemon.weight.minimum} ${pokemon.weight.maximum}` : 'Unknown'}
+                                value={pokemon.weight ? `${pokemon.weight.minimum} - ${pokemon.weight.maximum}` : 'Unknown'}
                             />
                             <InfoDetails
                                 label='Height'
-                                value={pokemon.height ? `${pokemon.height.minimum} ${pokemon.height.maximum}` : 'Unknown'}
+                                value={pokemon.height ? `${pokemon.height.minimum} - ${pokemon.height.maximum}` : 'Unknown'}
                             />
                             <InfoDetails
                                 label='Flee Rate'
@@ -99,11 +103,28 @@ const Details = class extends React.Component {
 
                     <div>
                         <div>
+                            <div className={this.props.classes.Details__Title}>Element</div>
+                            <div className={this.props.classes.Details__List}>
+                                {
+                                    pokemon.types ?
+                                        pokemon.types.map((type) => {
+                                            return (
+                                                <ElementBadge
+                                                    key={type}
+                                                    className={this.props.classes.Details__ElemType}
+                                                    type={type}
+                                                />
+                                            );
+                                        }) : 'No Elements'
+                                }
+                            </div>
+                        </div>
+                        <div>
                             <div className={this.props.classes.Details__Title}>
-                                <span>Weaknesses</span>
+                                <span>Weakness</span>
                                 <InfoButton
                                     hint={`
-                                        ${this.props.name ? this.props.name : 'Unknown'}
+                                        ${pokemon.name ? pokemon.name : 'Unknown'}
                                         takes extra damage from attacks of the following elements.
                                     `}
                                     alignment='left'
@@ -137,8 +158,8 @@ const Details = class extends React.Component {
                             </div>
                             <div className={this.props.classes.Details__List}>
                                 {
-                                    pokemon.resistances ?
-                                        pokemon.resistances.map((resistance) => {
+                                    pokemon.resistant ?
+                                        pokemon.resistant.map((resistance) => {
                                             return (
                                                 <ElementBadge
                                                     key={resistance}
@@ -157,6 +178,16 @@ const Details = class extends React.Component {
     };
 };
 
-const Output = injectSheet(styles)(Details);
+const Output = compose(
+    graphql(Pokemon.getById, {
+        name: 'PokemonGQL',
+        options: (props) => ({
+            variables: {
+                id: props.activePokemonId
+            }
+        })
+    }),
+    injectSheet(styles)
+)(Details);
 
 export { Details as Base, Output };

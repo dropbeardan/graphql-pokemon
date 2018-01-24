@@ -1,5 +1,9 @@
 import React from 'react';
 import injectSheet from 'react-jss';
+import { graphql } from 'react-apollo';
+import { compose } from 'recompose';
+
+import { Pokemon } from '../../models';
 
 import styles from './Pokedex.styles.js';
 
@@ -9,50 +13,12 @@ import { Details } from '../Details';
 import { PokemonCard } from '../Cards';
 import { SearchField } from '../InputFields';
 
-let pokemons = [
-    {
-        "id": "UG9rZW1vbjowMDE=",
-        "number": "001",
-        "name": "Bulbasaur",
-        "types": [
-            "Grass",
-            "Poison"
-        ]
-    },
-    {
-        "id": "UG9rZW1vbjowMDI=",
-        "number": "002",
-        "name": "Ivysaur",
-        "types": [
-            "Grass",
-            "Poison"
-        ]
-    },
-    {
-        "id": "UG9rZW1vbjowMDM=",
-        "number": "003",
-        "name": "Venusaur",
-        "types": [
-            "Grass",
-            "Poison"
-        ]
-    },
-    {
-        "id": "UG9rZW1vbjowMDQ=",
-        "number": "004",
-        "name": "Charmander",
-        "types": [
-            "Fire"
-        ]
-    }
-];
-
 const Pokedex = class extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            pokemons: pokemons ? pokemons : [],
+            pokemons: [],
             activePokemonId: null
         };
 
@@ -89,13 +55,25 @@ const Pokedex = class extends React.Component {
     };
 
     setActivePokemonId = (id) => {
-        this.setState({
-            ...this.state,
-            activePokemonId: id
-        });
+        return () => {
+            this.setState({
+                ...this.state,
+                activePokemonId: id
+            });
+        };
     };
 
     render() {
+        const pokemons = this.props.PokemonGQL.pokemons ? this.props.PokemonGQL.pokemons : [];
+        const detailsWindow = (
+            <div className={this.props.classes.Pokedex__Details}>
+                <Details
+                    activePokemonId={this.state.activePokemonId}
+                    onClose={this.clearActivePokemonId}
+                />
+            </div>
+        );
+
         return (
             <section className={this.props.classes.Pokedex} >
                 <div className={this.props.classes.Pokedex__Container}>
@@ -114,27 +92,35 @@ const Pokedex = class extends React.Component {
                             return (
                                 <PokemonCard
                                     key={pokemon.id}
+                                    image={pokemon.image}
                                     number={pokemon.number}
                                     name={pokemon.name}
                                     types={pokemon.types}
-                                    onClick={this.setActivePokemonId}
+                                    classification={pokemon.classification}
+                                    onClick={this.setActivePokemonId(pokemon.id)}
                                 />
                             );
                         })}
                     </div>
                 </div>
 
-                <div className={`${this.props.classes.Pokedex__Details} ${this.state.activePokemonId ? '' : 'hidden'}`}>
-                    <Details
-                        activePokemonId={this.state.activePokemonId}
-                        onClose={this.clearActivePokemonId}
-                    />
-                </div>
+                {this.state.activePokemonId ? detailsWindow : null}
+
             </section >
         );
     };
 };
 
-const Output = injectSheet(styles)(Pokedex);
+const Output = compose(
+    graphql(Pokemon.getAllSummary, {
+        name: 'PokemonGQL',
+        options: (props) => ({
+            variables: {
+                first: 9999
+            }
+        })
+    }),
+    injectSheet(styles)
+)(Pokedex);
 
 export { Pokedex as Base, Output };
