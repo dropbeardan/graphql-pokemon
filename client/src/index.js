@@ -7,11 +7,12 @@ import { compose } from 'recompose';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-import { withJSSProvider, withMuiThemeProvider } from './providers';
+import { withApolloProvider, withJSSProvider, withMuiThemeProvider } from './providers';
 
 import { Home, Pokedex } from './components';
 
 const withProviders = compose(
+    withApolloProvider,
     withJSSProvider,
     withMuiThemeProvider
 );
