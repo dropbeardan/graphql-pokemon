@@ -5,6 +5,7 @@ import styles from './Pokedex.styles.js';
 
 import { Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator } from 'material-ui/Toolbar';
 
+import { Details } from '../Details';
 import { PokemonCard } from '../Cards';
 import { SearchField } from '../InputFields';
 
@@ -35,6 +36,14 @@ let pokemons = [
             "Grass",
             "Poison"
         ]
+    },
+    {
+        "id": "UG9rZW1vbjowMDQ=",
+        "number": "004",
+        "name": "Charmander",
+        "types": [
+            "Fire"
+        ]
     }
 ];
 
@@ -43,14 +52,24 @@ const Pokedex = class extends React.Component {
         super(props);
 
         this.state = {
-            pokemons: pokemons ? pokemons : []
+            pokemons: pokemons ? pokemons : [],
+            activePokemonId: null
         };
 
+        this.clearActivePokemonId = this.clearActivePokemonId.bind(this);
         this.filterByName = this.filterByName.bind(this);
         this.filterPokemons = this.filterPokemons.bind(this);
+        this.setActivePokemonId = this.setActivePokemonId.bind(this);
     };
 
-    filterByName(pokemons, name) {
+    clearActivePokemonId = () => {
+        this.setState({
+            ...this.state,
+            activePokemonId: null
+        });
+    };
+
+    filterByName = (pokemons, name) => {
         if (!name) {
             return pokemons;
         }
@@ -67,6 +86,13 @@ const Pokedex = class extends React.Component {
                 pokemons: this.filterByName(pokemons, searchValue)
             });
         };
+    };
+
+    setActivePokemonId = (id) => {
+        this.setState({
+            ...this.state,
+            activePokemonId: id
+        });
     };
 
     render() {
@@ -91,10 +117,18 @@ const Pokedex = class extends React.Component {
                                     number={pokemon.number}
                                     name={pokemon.name}
                                     types={pokemon.types}
+                                    onClick={this.setActivePokemonId}
                                 />
                             );
                         })}
                     </div>
+                </div>
+
+                <div className={`${this.props.classes.Pokedex__Details} ${this.state.activePokemonId ? '' : 'hidden'}`}>
+                    <Details
+                        activePokemonId={this.state.activePokemonId}
+                        onClose={this.clearActivePokemonId}
+                    />
                 </div>
             </section >
         );
