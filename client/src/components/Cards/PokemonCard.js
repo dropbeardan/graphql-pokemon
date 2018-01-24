@@ -28,7 +28,7 @@ const PokemonCard = class extends React.Component {
                 </div>
                 <div className={this.props.classes.PokemonCard__Overlay}>
                     <div className={this.props.classes.PokemonCard__Overlay__Description}>
-                        <span>{`#${this.props.id ? this.props.id : '???'} ${this.props.name ? this.props.name : 'Unknown'}`}</span>
+                        <span>{`#${this.props.number ? this.props.number : '???'} ${this.props.name ? this.props.name : 'Unknown'}`}</span>
                         <div>Click to View Details</div>
                     </div>
                 </div>
