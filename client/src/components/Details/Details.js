@@ -7,15 +7,37 @@ import { Pokemon } from '../../models';
 
 import styles from './Details.styles.js';
 
-import { ClearButton, InfoButton } from '../Buttons';
 import { ElementBadge } from '../Badges';
+import { ClearButton, InfoButton } from '../Buttons';
 import { PokemonCard } from '../Cards';
+import { LoadingOverlay } from '../Overlays';
 import { AttackDetails, InfoDetails } from './index';
 
-import Pokemon404 from '../../assets/images/pokemon404.jpg';
-
 const Details = class extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loading: true
+        };
+    };
+
+    componentWillUpdate = (props) => {
+        if (this.state.loading && !props.PokemonGQL.loading) {
+            this.setState({
+                ...this.state,
+                loading: false
+            });
+        }
+    };
+
     render() {
+        if (this.props.PokemonGQL && this.props.PokemonGQL.loading) {
+            return (
+                <LoadingOverlay size={120} description='Retrieving Pokédata' />
+            );
+        };
+
         const pokemon = this.props.PokemonGQL.pokemon ? this.props.PokemonGQL.pokemon : {};
 
         return (
@@ -78,6 +100,7 @@ const Details = class extends React.Component {
                                         pokemon.evolutions.map((evolution) => {
                                             return (
                                                 <PokemonCard
+                                                    key={evolution.id}
                                                     image={evolution.image}
                                                     number={evolution.number}
                                                     name={evolution.name}
@@ -85,6 +108,7 @@ const Details = class extends React.Component {
                                                     classification={evolution.classification}
                                                     alignment='left'
                                                     hint='Click to View Details'
+                                                    onClick={this.props.changePokemonHandler(evolution.id)}
                                                 />
                                             );
                                         }) : 'No Evolutions'

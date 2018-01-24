@@ -23,6 +23,7 @@ ReactDOM.render(
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route exact path='/pokedex' component={Pokedex} />
+                <Route component={Home} />
             </Switch>
         </BrowserRouter>
     ),

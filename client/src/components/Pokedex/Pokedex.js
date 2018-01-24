@@ -9,6 +9,7 @@ import styles from './Pokedex.styles.js';
 
 import { Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator } from 'material-ui/Toolbar';
 
+import { LoadingOverlay } from '../Overlays';
 import { Details } from '../Details';
 import { PokemonCard } from '../Cards';
 import { SearchField } from '../InputFields';
@@ -18,6 +19,7 @@ const Pokedex = class extends React.Component {
         super(props);
 
         this.state = {
+            loading: true,
             pokemons: [],
             activePokemonId: null
         };
@@ -26,6 +28,16 @@ const Pokedex = class extends React.Component {
         this.filterByName = this.filterByName.bind(this);
         this.filterPokemons = this.filterPokemons.bind(this);
         this.setActivePokemonId = this.setActivePokemonId.bind(this);
+    };
+
+    componentWillUpdate = (props) => {
+        if (this.state.loading && !props.PokemonGQL.loading && props.PokemonGQL.pokemons.length > 0) {
+            this.setState({
+                ...this.state,
+                pokemons: props.PokemonGQL.pokemons,
+                loading: false
+            });
+        }
     };
 
     clearActivePokemonId = () => {
@@ -64,12 +76,20 @@ const Pokedex = class extends React.Component {
     };
 
     render() {
+        if (this.props.PokemonGQL && this.props.PokemonGQL.loading) {
+            return (
+                <LoadingOverlay size={120} description='Starting Pokedex' />
+            );
+        };
+
         const pokemons = this.props.PokemonGQL.pokemons ? this.props.PokemonGQL.pokemons : [];
+
         const detailsWindow = (
             <div className={this.props.classes.Pokedex__Details}>
                 <Details
                     activePokemonId={this.state.activePokemonId}
                     onClose={this.clearActivePokemonId}
+                    changePokemonHandler={this.setActivePokemonId}
                 />
             </div>
         );
