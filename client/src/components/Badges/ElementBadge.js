@@ -49,7 +49,7 @@ const ElementBadge = class extends React.Component {
     render() {
         return (
             <div
-                className={this.props.classes.ElementBadge}
+                className={`${this.props.classes.ElementBadge} ${this.props.className}`}
                 onClick={this.props.onClick}
             >
                 <div className={this.props.classes.ElementBadge__Badge}>

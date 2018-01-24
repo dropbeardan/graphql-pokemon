@@ -26,12 +26,12 @@ const styles = {
         flexDirection: 'row-reverse',
         height: '100%',
         width: '100%',
-        zIndex: '1',
-        '& > *': {
-            margin: '5px',
-            height: '25px',
-            width: '25px'
-        }
+        zIndex: '1'
+    },
+    PokemonCard__Type__Badge: {
+        margin: '5px',
+        height: '25px',
+        width: '25px'
     },
     PokemonCard__Overlay: {
         display: 'flex',

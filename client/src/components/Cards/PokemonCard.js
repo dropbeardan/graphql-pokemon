@@ -22,7 +22,12 @@ const PokemonCard = class extends React.Component {
                 <div className={this.props.classes.PokemonCard__Type}>
                     {this.props.types && this.props.types.map((type) => {
                         return (
-                            <ElementBadge key={type} type={type} position='center' />
+                            <ElementBadge
+                                key={type}
+                                className={this.props.classes.PokemonCard__Type__Badge}
+                                type={type}
+                                position='center'
+                            />
                         );
                     })}
                 </div>
