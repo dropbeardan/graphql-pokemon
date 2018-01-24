@@ -5,6 +5,8 @@ import TextField from 'material-ui/TextField';
 
 import styles from './SearchField.styles.js';
 
+import { ClearButton } from '../Buttons';
+
 const SearchField = class extends React.Component {
     constructor(props) {
         super(props);
@@ -52,12 +54,11 @@ const SearchField = class extends React.Component {
                     value={this.state.value}
                     onChange={this.changeField(this.props.onChange)}
                 />
-                <div
-                    className={`${this.props.classes.SearchField__Clear} ${this.state.value ? '' : 'disabled'}`}
+                <ClearButton
+                    className={this.props.classes.SearchField__Clear}
+                    disabled={!this.state.value}
                     onClick={this.clearField(this.props.onChange)}
-                >
-                    <i className='material-icons'>clear</i>
-                </div>
+                />
             </div>
         );
     };
