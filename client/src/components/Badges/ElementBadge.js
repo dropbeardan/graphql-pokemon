@@ -1,8 +1,6 @@
 import React from 'react';
 import injectSheet from 'react-jss';
 
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-
 import styles from './ElementBadge.styles.js';
 
 import normalImg from '../../assets/images/normal-type.gif';

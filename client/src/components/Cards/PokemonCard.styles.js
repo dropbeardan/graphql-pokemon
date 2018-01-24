@@ -1,5 +1,3 @@
-import { jss } from 'react-jss';
-
 const styles = {
     PokemonCard: {
         position: 'relative',

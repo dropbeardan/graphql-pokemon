@@ -1,8 +1,6 @@
 import React from 'react';
 import injectSheet from 'react-jss';
 
-import FlatButton from 'material-ui/FlatButton';
-
 import styles from './ClearButton.styles';
 
 const ClearButton = class extends React.Component {
