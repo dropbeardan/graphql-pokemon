@@ -97,6 +97,7 @@ const Pokedex = class extends React.Component {
                                     name={pokemon.name}
                                     types={pokemon.types}
                                     classification={pokemon.classification}
+                                    hint='Click to View Details'
                                     onClick={this.setActivePokemonId(pokemon.id)}
                                 />
                             );

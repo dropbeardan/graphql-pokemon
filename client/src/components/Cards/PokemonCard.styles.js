@@ -68,7 +68,10 @@ const styles = {
         '& > *:last-child': {
             overflow: 'hidden',
             maxHeight: '0',
-            transition: 'max-height 0.2s'
+            transition: 'max-height 0.2s',
+            '&.hidden': {
+                display: 'none'
+            }
         }
     }
 };
