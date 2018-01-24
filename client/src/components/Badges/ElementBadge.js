@@ -60,7 +60,7 @@ const ElementBadge = class extends React.Component {
 
                 <div className={`
                     ${this.props.classes.ElementBadge__Hint}
-                    ${this.props.position ? this.props.position : ''}
+                    ${this.props.alignment ? this.props.alignment : ''}
                 `}>
                     <div>{this.props.type ? this.props.type : 'Unknown'}</div>
                 </div>
