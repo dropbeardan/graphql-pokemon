@@ -9,6 +9,7 @@ import styles from './Details.styles.js';
 
 import { ClearButton, InfoButton } from '../Buttons';
 import { ElementBadge } from '../Badges';
+import { PokemonCard } from '../Cards';
 import { AttackDetails, InfoDetails } from './index';
 
 import Pokemon404 from '../../assets/images/pokemon404.jpg';
@@ -26,7 +27,13 @@ const Details = class extends React.Component {
                     />
                 </div>
                 <div className={this.props.classes.Details__Evolution}>
-                    <img src={pokemon.image ? pokemon.image : Pokemon404} alt='Not Available' />
+                    <PokemonCard
+                        image={pokemon.image}
+                        number={pokemon.number}
+                        name={pokemon.name}
+                        types={pokemon.types}
+                        classification={pokemon.classification}
+                    />
                 </div>
                 <div className={this.props.classes.Details__Stats}>
                     <div>
@@ -51,6 +58,37 @@ const Details = class extends React.Component {
                             <InfoDetails
                                 label='Flee Rate'
                                 value={pokemon.fleeRate ? `${Math.round(pokemon.fleeRate * 100)}%` : 'Unknown'}
+                            />
+                        </div>
+
+                        <div className={this.props.classes.Details__Title}>Evolution</div>
+                        <div className={this.props.classes.Details__Info}>
+                            <InfoDetails
+                                label='Requirements'
+                                value={
+                                    pokemon.evolutionRequirements ?
+                                        `${pokemon.evolutionRequirements.amount} ${pokemon.evolutionRequirements.name}` :
+                                        'No Evolutions'
+                                }
+                            />
+                            <InfoDetails
+                                label='Evolved Forms'
+                                value={
+                                    pokemon.evolutions ?
+                                        pokemon.evolutions.map((evolution) => {
+                                            return (
+                                                <PokemonCard
+                                                    image={evolution.image}
+                                                    number={evolution.number}
+                                                    name={evolution.name}
+                                                    types={evolution.types}
+                                                    classification={evolution.classification}
+                                                    alignment='left'
+                                                    hint='Click to View Details'
+                                                />
+                                            );
+                                        }) : 'No Evolutions'
+                                }
                             />
                         </div>
                     </div>
