@@ -9,7 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import { withJSSProvider, withMuiThemeProvider } from './providers';
 
-import { Home } from './components';
+import { Home, Pokedex } from './components';
 
 const withProviders = compose(
     withJSSProvider,
@@ -21,6 +21,7 @@ ReactDOM.render(
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={Home} />
+                <Route exact path='/pokedex' component={Pokedex} />
             </Switch>
         </BrowserRouter>
     ),
