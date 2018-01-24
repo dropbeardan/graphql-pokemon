@@ -47,6 +47,8 @@ const elements = {
 
 const ElementBadge = class extends React.Component {
     render() {
+        let elemType = String(this.props.type).toLowerCase();
+
         return (
             <div
                 className={this.props.classes.ElementBadge}
@@ -54,8 +56,8 @@ const ElementBadge = class extends React.Component {
             >
                 <div className={this.props.classes.ElementBadge__Badge}>
                     <img
-                        src={this.props.type && elements[this.props.type] ?
-                            elements[this.props.type] : 'http://via.placeholder.com/200x200'}
+                        src={elemType && elements[elemType] ?
+                            elements[elemType] : 'http://via.placeholder.com/200x200'}
                         alt='Unknown Type'
                     />
                 </div>
@@ -64,7 +66,7 @@ const ElementBadge = class extends React.Component {
                     ${this.props.classes.ElementBadge__Hint}
                     ${this.props.position ? this.props.position : ''}
                 `}>
-                    <div className='title'>{this.props.type ? this.props.type : 'Unknown'}</div>
+                    <div className='title'>{elemType ? elemType : 'Unknown'}</div>
                 </div>
             </div>
         );
