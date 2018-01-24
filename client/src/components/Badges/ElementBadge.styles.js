@@ -46,6 +46,8 @@ const styles = {
         borderRadius: '5px',
         padding: '0',
         background: 'rgba(255, 255, 255, 0.9)',
+        fontSize: '1.25em',
+        fontWeight: 'bold',
         opacity: '0',
         transition: 'max-height 0.2s, padding 0.2s, opacity 0.2s',
         '&.left': {
@@ -53,10 +55,6 @@ const styles = {
         },
         '&.right': {
             left: 0
-        },
-        '& > .title': {
-            fontSize: '1.25em',
-            fontWeight: 'bold'
         }
     },
 };

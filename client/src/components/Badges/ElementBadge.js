@@ -62,7 +62,7 @@ const ElementBadge = class extends React.Component {
                     ${this.props.classes.ElementBadge__Hint}
                     ${this.props.position ? this.props.position : ''}
                 `}>
-                    <div className='title'>{this.props.type ? this.props.type : 'Unknown'}</div>
+                    <div>{this.props.type ? this.props.type : 'Unknown'}</div>
                 </div>
             </div>
         );
