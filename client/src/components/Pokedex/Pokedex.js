@@ -31,7 +31,7 @@ const Pokedex = class extends React.Component {
     };
 
     componentWillUpdate = (props) => {
-        if (this.state.loading && !props.PokemonGQL.loading && props.PokemonGQL.pokemons.length > 0) {
+        if (this.state.loading && !props.PokemonGQL.loading && Array.isArray(props.PokemonGQL.pokemons)) {
             this.setState({
                 ...this.state,
                 pokemons: props.PokemonGQL.pokemons,
