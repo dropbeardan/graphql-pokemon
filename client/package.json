@@ -20,11 +20,14 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "react-scripts build",
+		"build": "react-scripts build && npm run postbuild",
 		"test": "react-scripts test --env=jsdom",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"postbuild": "gulp"
 	},
 	"devDependencies": {
-		"enzyme": "^3.3.0"
+		"enzyme": "^3.3.0",
+		"gulp": "^3.9.1",
+		"gutil": "^1.6.4"
 	}
 }
