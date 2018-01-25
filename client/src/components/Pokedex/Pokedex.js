@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import injectSheet from 'react-jss';
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
@@ -7,12 +8,13 @@ import { Pokemon } from '../../models';
 
 import styles from './Pokedex.styles.js';
 
-import { Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator } from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 
-import { LoadingOverlay } from '../Overlays';
-import { Details } from '../Details';
 import { PokemonCard } from '../Cards';
+import { Logo } from '../Content';
+import { Details } from '../Details';
 import { SearchField } from '../InputFields';
+import { LoadingOverlay } from '../Overlays';
 
 const Pokedex = class extends React.Component {
     constructor(props) {
@@ -99,7 +101,9 @@ const Pokedex = class extends React.Component {
                 <div className={this.props.classes.Pokedex__Container}>
                     <Toolbar className={this.props.classes.Pokedex__Filter} style={styles.Pokedex__Filter}>
                         <ToolbarGroup>
-                            <ToolbarTitle text='Filter' />
+                            <Link to='/' title='Pokémon GraphQL Home' className={this.props.classes.Pokedex__Filter__Logo}>
+                                <Logo />
+                            </Link>
                             <ToolbarSeparator />
                         </ToolbarGroup>
                         <ToolbarGroup>

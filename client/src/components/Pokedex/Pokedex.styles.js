@@ -33,6 +33,9 @@ const styles = {
             maxWidth: '50%'
         }
     },
+    Pokedex__Filter__Logo: {
+        height: '75px'
+    },
     Pokedex__Results: {
         display: 'flex',
         justifyContent: 'center',
