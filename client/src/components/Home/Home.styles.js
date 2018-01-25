@@ -56,11 +56,15 @@ const styles = {
 		lineHeight: '1.25em',
 		letterSpacing: '10px',
 		textAlign: 'center',
-		color: '#AB47BC'
+		color: '#ffcb05',
+		textShadow: '2px 2px #3466af'
 	},
 	Home__Hero__Main: {
+		textAlign: 'center',
 		fontSize: '2em',
-		color: '#E91E63'
+		fontWeight: 'bold',
+		color: '#e83c3c',
+		textShadow: '0 0 10px rgb(255, 255, 255)'
 	},
 	'@media screen and (max-width: 400px)': {
 		Home__Hero__Header: {
