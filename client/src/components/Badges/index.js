@@ -1,0 +1,1 @@
+export { Output as ElementBadge } from './ElementBadge';

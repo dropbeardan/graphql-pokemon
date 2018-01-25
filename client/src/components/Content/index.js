@@ -1,0 +1,1 @@
+export { Output as Logo } from './Logo';

@@ -1,0 +1,33 @@
+{
+	"name": "graphql-pokemon-client",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"apollo-client-preset": "^1.0.6",
+		"enzyme-adapter-react-16": "^1.1.1",
+		"graphql": "^0.12.3",
+		"graphql-tag": "^2.6.1",
+		"material-ui": "^0.20.0",
+		"react": "^16.2.0",
+		"react-apollo": "^2.0.4",
+		"react-dom": "^16.2.0",
+		"react-jss": "^8.2.1",
+		"react-router": "^4.2.0",
+		"react-router-dom": "^4.2.2",
+		"react-scripts": "1.1.0",
+		"react-test-renderer": "^16.2.0",
+		"recompose": "^0.26.0"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build && npm run postbuild",
+		"test": "react-scripts test --env=jsdom",
+		"eject": "react-scripts eject",
+		"postbuild": "gulp"
+	},
+	"devDependencies": {
+		"enzyme": "^3.3.0",
+		"gulp": "^3.9.1",
+		"gutil": "^1.6.4"
+	}
+}
