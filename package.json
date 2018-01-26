@@ -1,0 +1,30 @@
+{
+	"name": "graphql-pokemon-code-challenge",
+	"description": "A code challenge extension through GraphQL!",
+	"version": "1.0.0",
+	"author": {
+		"name": "Daniel Sutisna",
+		"email": "dan.ess.001@gmail.com",
+		"url": "https://github.com/dropbeardan"
+	},
+	"bugs": "https://github.com/dropbeardan/graphql-pokemon/issues",
+	"homepage": "https://github.com/dropbeardan/graphql-pokemon#readme",
+	"keywords": [
+		"pokemon",
+		"pogoapi",
+		"pokeapi",
+		"koa",
+		"graphql",
+		"relay",
+		"react"
+	],
+	"license": "MIT",
+	"main": "dist/server/index.js",
+	"repository": "https://github.com/dropbeardan/graphql-pokemon",
+	"scripts": {
+		"build": "npm run build-client && npm run build-server",
+		"build-client": "npm run build --prefix client",
+		"build-server": "npm run build --prefix server",
+		"start": "npm run start --prefix dist/server"
+	}
+}
