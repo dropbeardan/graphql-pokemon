@@ -25,6 +25,7 @@
     "eslint": "^3.5.0",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.0.1",
+    "jest": "^22.1.4",
     "nodemon": "^1.9.2"
   },
   "homepage": "https://github.com/lucasbento/graphql-pokemon#readme",
@@ -44,6 +45,7 @@
     "build": "rm -rf ../dist/* && babel src --out-dir ../dist/server --copy-files",
     "build-schema": "babel-node ./scripts/buildSchema.js",
     "start": "node ../dist/server/index.js",
+    "test": "jest",
     "watch": "nodemon src/index.js --exec babel-node --copy-files"
   }
 }

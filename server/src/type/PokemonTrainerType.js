@@ -9,7 +9,7 @@ import { globalIdField } from 'graphql-relay';
 
 import { PokemonType } from './index';
 
-import { getPokemonsByIdList } from '../service/Pokemon';
+import { getPokemonsByIds } from '../service/Pokemon';
 
 const PokemonTrainerType = new GraphQLObjectType({
 	name: 'PokemonTrainer',
@@ -27,16 +27,16 @@ const PokemonTrainerType = new GraphQLObjectType({
 			resolve: obj => obj.lastName
 		},
 		username: {
-			type: PokemonDimensionType,
+			type: GraphQLString,
 			description: 'The minimum and maximum weight of this Pokémon',
 			resolve: obj => obj.username
 		},
 		pokemons: {
 			type: new GraphQLList(PokemonType),
 			description: 'The minimum and maximum weight of this Pokémon',
-			resolve: async obj => getPokemonsByIdList(obj.pokemons)
+			resolve: async obj => getPokemonsByIds(obj.pokemons)
 		}
 	})
 });
 
-export default PokemonType;
+export default PokemonTrainerType;
