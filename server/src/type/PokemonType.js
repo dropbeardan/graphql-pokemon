@@ -8,9 +8,11 @@ import {
 
 import { globalIdField } from 'graphql-relay';
 
-import PokemonDimensionType from './PokemonDimensionType';
-import PokemonAttackType from './PokemonAttackType';
-import EvolutionRequirementType from './EvolutionRequirementType';
+import {
+	PokemonDimensionType,
+	PokemonAttackType,
+	EvolutionRequirementType
+} from './index';
 
 import { getPokemonsByEvolutionList } from '../service/Pokemon';
 
