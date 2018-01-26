@@ -1,47 +1,72 @@
-import pokemons from '../pokemons/pokemons.json';
+import { pokemons } from '../datasource';
 
-export async function getPokemons(args) {
-  const searchedPokemons = pokemons.slice(0, args.first);
+const getPokemonById = async pokemonId => {
+	const pokemon = pokemons.find(pokemon => {
+		return parseInt(pokemon.id, 10) === parseInt(pokemonId, 10);
+	});
 
-  // const edges = searchedPokemons.map(pokemon => ({ node: pokemon }));
+	return pokemon || null;
+};
 
-  return searchedPokemons || null;
-}
+const getPokemonByName = async pokemonName => {
+	if (!pokemonName) {
+		return null;
+	}
 
-export async function getPokemonById(pokemonId) {
-  const pokemon = pokemons.filter(({ id }) =>
-    parseInt(id, 10) === parseInt(pokemonId, 10)
-  );
+	let pokemon = pokemons.find(pokemon => {
+		return pokemon.name.toLowerCase() === pokemonName.toLowerCase().trim();
+	});
 
-  return pokemon[0] || null;
-}
+	return pokemon || null;
+};
 
-export async function getPokemonByName(pokemonNameSearch) {
-  const pokemonName = pokemonNameSearch.toLowerCase().trim();
+const getPokemons = async limit => {
+	let pokemonList =
+		limit || limit === 0 ? pokemons.slice(0, Math.max(limit, 0)) : pokemons;
 
-  const pokemon = pokemons.filter(({ name }) =>
-    name.toLowerCase() === pokemonName
-  );
+	return pokemonList.length > 0 ? pokemonList : null;
+};
 
-  if (pokemon) {
-    return pokemon[0];
-  }
+const getPokemonsByEvolutions = async evolutions => {
+	let pokemonNames = evolutions
+		? evolutions.map(evolution => {
+				return evolution.name.toLowerCase().trim();
+			})
+		: [];
 
-  return pokemon[0] || null;
-}
+	let searchResults = await Promise.all(
+		pokemonNames.map(name => {
+			return getPokemonByName(name);
+		})
+	);
 
-export async function getPokemonByEvolutions(evolutions) {
-  if (!evolutions) {
-    return null;
-  }
+	let pokemonList = searchResults.filter(pokemon => {
+		return pokemon !== null;
+	});
 
-  const pokemonNames = evolutions.map(evolution =>
-    evolution.name.toLowerCase().trim()
-  );
+	return pokemonList.length > 0 ? pokemonList : null;
+};
 
-  const searchedPokemons = pokemons.filter(({ name }) =>
-    pokemonNames.indexOf(name.toLowerCase()) !== -1
-  );
+const getPokemonsByIds = async pokemonIds => {
+	let ids = pokemonIds ? pokemonIds : [];
 
-  return searchedPokemons || null;
-}
+	let searchResults = await Promise.all(
+		ids.map(pokemonId => {
+			return getPokemonById(pokemonId);
+		})
+	);
+
+	let pokemonList = searchResults.filter(pokemon => {
+		return pokemon !== null;
+	});
+
+	return pokemonList.length > 0 ? pokemonList : null;
+};
+
+export {
+	getPokemonById,
+	getPokemonByName,
+	getPokemons,
+	getPokemonsByEvolutions,
+	getPokemonsByIds
+};
