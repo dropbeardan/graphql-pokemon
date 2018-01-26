@@ -15,7 +15,11 @@ const clean = async dir => {
 const build = async (src, dest) => {
 	return new Promise((resolve, reject) => {
 		gulp
-			.src(path.join(src, '**', '*.js'))
+			.src([
+				path.join(src, '**', '*.js'),
+				`!${path.join(src, '**', 'tests/')}`,
+				`!${path.join(src, '**', 'tests', '**', '*')}`
+			])
 			.pipe(babel())
 			.pipe(gulp.dest(dest))
 			.on('end', () => {
@@ -40,7 +44,11 @@ const npmInstall = async dir => {
 const transfer = async (src, dest) => {
 	return new Promise((resolve, reject) => {
 		gulp
-			.src(src)
+			.src([
+				src,
+				`!${path.join(src, '**', 'tests/')}`,
+				`!${path.join(src, '**', 'tests', '**', '*')}`
+			])
 			.pipe(gulp.dest(dest))
 			.on('end', () => {
 				log(`Files transferred from ${src} to ${dest}`);
