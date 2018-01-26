@@ -9,9 +9,9 @@ import { fromGlobalId } from 'graphql-relay';
 import PokemonType from './PokemonType';
 
 import {
-	getPokemons,
 	getPokemonById,
-	getPokemonByName
+	getPokemonByName,
+	getPokemons
 } from '../service/Pokemon';
 
 const QueryType = new GraphQLObjectType({
@@ -29,7 +29,9 @@ const QueryType = new GraphQLObjectType({
 					type: GraphQLInt
 				}
 			},
-			resolve: async (obj, args) => await getPokemons(args)
+			resolve: async (obj, { first }) => {
+				return await getPokemons(first);
+			}
 		},
 		pokemon: {
 			type: PokemonType,
