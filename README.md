@@ -54,13 +54,13 @@ Simply get Pokémon's information through queries in GraphQL, example:
 ### Production
 
 ```sh
-\#root: cd client
-\#client: npm install
-\#client: cd ../server
-\#server: npm install
-\#server: cd ..
-\#root: npm run build
-\#root: npm run start
+#root: cd client
+#client: npm install
+#client: cd ../server
+#server: npm install
+#server: cd ..
+#root: npm run build
+#root: npm run start
 ```
 
 Then the client app will be available from:
