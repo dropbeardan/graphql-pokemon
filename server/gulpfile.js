@@ -44,11 +44,7 @@ const npmInstall = async dir => {
 const transfer = async (src, dest) => {
 	return new Promise((resolve, reject) => {
 		gulp
-			.src([
-				src,
-				`!${path.join(src, '**', 'tests/')}`,
-				`!${path.join(src, '**', 'tests', '**', '*')}`
-			])
+			.src(src)
 			.pipe(gulp.dest(dest))
 			.on('end', () => {
 				log(`Files transferred from ${src} to ${dest}`);
@@ -68,7 +64,12 @@ gulp.task('build-project', async () => {
 	return clean(distDir)
 		.then(() => {
 			return transfer(
-				[path.join(srcDir, '**', '*'), ...auxillaryFiles],
+				[
+					path.join(srcDir, '**', '*'),
+					`!${path.join(srcDir, '**', 'tests/')}`,
+					`!${path.join(srcDir, '**', 'tests', '**', '*')}`,
+					...auxillaryFiles
+				],
 				distDir
 			);
 		})
