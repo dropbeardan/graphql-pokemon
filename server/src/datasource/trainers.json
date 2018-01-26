@@ -1,0 +1,10 @@
+[
+	{
+		"id": "001",
+		"firstName": "Ash",
+		"lastName": "Ketchum",
+		"username": "PokemonMaster",
+		"password": "",
+		"pokemons": ["001", "002", "003", "004", "005"]
+	}
+]
