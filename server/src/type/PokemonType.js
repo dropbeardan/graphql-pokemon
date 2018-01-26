@@ -14,7 +14,7 @@ import {
 	EvolutionRequirementType
 } from './index';
 
-import { getPokemonsByEvolutionList } from '../service/Pokemon';
+import { getPokemonsByEvolutions } from '../service/Pokemon';
 
 const PokemonType = new GraphQLObjectType({
 	name: 'Pokemon',
@@ -80,7 +80,7 @@ const PokemonType = new GraphQLObjectType({
 			type: new GraphQLList(PokemonType),
 			description: 'The evolutions of this Pokémon',
 			resolve: async obj => {
-				return await getPokemonsByEvolutionList(obj.evolutions);
+				return await getPokemonsByEvolutions(obj.evolutions);
 			}
 		},
 		evolutionRequirements: {
