@@ -1,26 +1,46 @@
 const gulp = require('gulp');
-const gutil = require('gutil');
+const del = require('del');
+const log = require('fancy-log');
 const path = require('path');
 
-const tasks = [
-    'copy-build-files'
-];
+const clean = async dir => {
+	return del([path.join(dir, '*')], { force: true }).then(() => {
+		log(`Cleared contents from ${dir}.`);
+	});
+};
 
-gulp.task('default', tasks, () => {
-    return gutil.log('Gulp Tasks Completed.');
+const transfer = async (src, dest) => {
+	return new Promise((resolve, reject) => {
+		gulp
+			.src(src)
+			.pipe(gulp.dest(dest))
+			.on('end', () => {
+				log(`Files transferred from ${src} to ${dest}`);
+				resolve();
+			});
+	});
+};
+
+gulp.task('transfer-build-files', async () => {
+	const srcDir = path.join(__dirname, 'build');
+	const distDir = path.join(__dirname, '..', 'dist', 'client');
+	const auxillaryFiles = [];
+
+	return clean(distDir)
+		.then(() => {
+			return transfer(
+				[
+					path.join(srcDir, '**', '*'),
+					`!${path.join(srcDir, '**', 'tests/')}`,
+					`!${path.join(srcDir, '**', 'tests', '**', '*')}`,
+					...auxillaryFiles
+				],
+				distDir
+			);
+		})
+		.then(() => {
+			return clean(srcDir);
+		});
 });
 
-gulp.task('copy-build-files', async () => {
-    let srcDir = path.join(__dirname, 'build');
-    let outputDir = path.join(__dirname, '..', 'dist', 'client');
-
-    gutil.log(`Transferring build files from ${srcDir} to ${outputDir}.`);
-
-    gulp
-        .src([
-            path.join(srcDir, '**', '*')
-        ])
-        .pipe(gulp.dest(outputDir));
-
-    gutil.log(`Files successfully transferred.`);
-});
+gulp.task('default', gulp.parallel('transfer-build-files'));
